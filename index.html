@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Nhím Chat</title>
   <style>
     body {
@@ -12,7 +12,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .container {
@@ -28,7 +28,7 @@
       text-shadow: 0 0 10px #00ffff;
     }
 
-    .auth-box, .chat-box {
+    .auth-box, .chat-box, #admin-panel {
       margin-top: 20px;
       padding: 20px;
       background-color: #101929;
@@ -88,16 +88,34 @@
     .btn-group {
       margin-top: 10px;
     }
+
+    #admin-panel {
+      display: none;
+    }
+
+    #user-list input {
+      margin: 2px;
+      padding: 5px;
+      width: auto;
+      font-size: 13px;
+    }
+
+    #user-list div {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #00ffff33;
+      padding-bottom: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🦔 Nhím Chat</h1>
 
+    <!-- Đăng nhập -->
     <div class="auth-box neon-border">
       <h2>Đăng nhập / Đăng ký</h2>
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Mật khẩu">
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Mật khẩu" />
       <div class="btn-group">
         <button onclick="signUp()">Đăng ký</button>
         <button onclick="signIn()">Đăng nhập</button>
@@ -105,18 +123,31 @@
       </div>
     </div>
 
+    <!-- Chat -->
     <div class="chat-box neon-border">
       <div id="chat-messages"></div>
       <div class="input-area">
-        <input type="text" id="message" placeholder="Nhập tin nhắn...">
+        <input type="text" id="message" placeholder="Nhập tin nhắn..." />
         <button onclick="sendMessage()">Gửi</button>
       </div>
     </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="neon-border">
+      <h2>👑 Admin Panel</h2>
+      <button onclick="deleteAllMessages()">🧹 Xóa tất cả tin nhắn</button>
+
+      <h3 style="margin-top: 20px;">🧑‍💼 Quản lý người dùng</h3>
+      <div id="user-list"></div>
+    </div>
   </div>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script src="chat.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Script xử lý -->
+  <script src="chat.js"></script>
 </body>
 </html>
