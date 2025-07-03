@@ -50,10 +50,9 @@ function sendMessage() {
   }
 }
 
-// 📡 Lắng nghe tin nhắn mới và hiển thị
 auth.onAuthStateChanged(user => {
   if (user) {
-    // 🧪 Kiểm tra quyền admin
+    // ✅ Chỉ kiểm tra admin khi có user
     db.collection("users")
       .where("email", "==", user.email)
       .get()
@@ -62,13 +61,12 @@ auth.onAuthStateChanged(user => {
           const data = doc.data();
           if (data.isAdmin === true) {
             alert("🦔 Xin chào Admin Nhím Công Nghệ!");
-            // Có thể mở chức năng admin ở đây
-            // Ví dụ: document.getElementById("admin-panel").style.display = "block";
+            // mở giao diện admin nếu có
           }
         });
       });
 
-    // 📡 Lắng nghe chat như cũ
+    // 📡 Lắng nghe chat như thường
     db.collection("messages")
       .orderBy("timestamp")
       .onSnapshot(snapshot => {
