@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Nhím Chat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0f1c;
+      color: #00ffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 32px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .auth-box, .chat-box {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #101929;
+      border-radius: 10px;
+    }
+
+    .neon-border {
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input {
+      width: 80%;
+      background-color: #1c2a3a;
+      color: #00ffff;
+    }
+
+    button {
+      background-color: #00ffff;
+      color: #0a0f1c;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00bfbf;
+    }
+
+    #chat-messages {
+      height: 200px;
+      overflow-y: auto;
+      background-color: #0a1322;
+      margin: 10px 0;
+      padding: 10px;
+      text-align: left;
+      border-radius: 5px;
+    }
+
+    .input-area {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .input-area input {
+      width: 80%;
+    }
+
+    .btn-group {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🦔 Nhím Chat</h1>
+
+    <div class="auth-box neon-border">
+      <h2>Đăng nhập / Đăng ký</h2>
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Mật khẩu">
+      <div class="btn-group">
+        <button onclick="signUp()">Đăng ký</button>
+        <button onclick="signIn()">Đăng nhập</button>
+        <button onclick="signOut()">Đăng xuất</button>
+      </div>
+    </div>
+
+    <div class="chat-box neon-border">
+      <div id="chat-messages"></div>
+      <div class="input-area">
+        <input type="text" id="message" placeholder="Nhập tin nhắn...">
+        <button onclick="sendMessage()">Gửi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>
