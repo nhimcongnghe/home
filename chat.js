@@ -1,4 +1,4 @@
-// ⚙️ Kết nối Firebase
+// ⚙️ Khởi tạo Firebase App + Auth + Firestore
 const firebaseConfig = {
   apiKey: "AIzaSyDY_SqgY85ij_677Bvk1I3j3rX6uXZQwKQ",
   authDomain: "webchat-7c3ad.firebaseapp.com",
@@ -8,7 +8,7 @@ const firebaseConfig = {
   appId: "1:895209638075:web:98beae42d08c7783a7419e"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
