@@ -53,19 +53,36 @@ function sendMessage() {
 // 📡 Lắng nghe tin nhắn mới và hiển thị
 auth.onAuthStateChanged(user => {
   if (user) {
+    // 🧪 Kiểm tra quyền admin
+    db.collection("users")
+      .where("email", "==", user.email)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          if (data.isAdmin === true) {
+            alert("🦔 Xin chào Admin Nhím Công Nghệ!");
+            // Có thể mở chức năng admin ở đây
+            // Ví dụ: document.getElementById("admin-panel").style.display = "block";
+          }
+        });
+      });
+
+    // 📡 Lắng nghe chat như cũ
     db.collection("messages")
       .orderBy("timestamp")
       .onSnapshot(snapshot => {
         const chatBox = document.getElementById("chat-messages");
-        chatBox.innerHTML = ""; // Xóa cũ
+        chatBox.innerHTML = "";
         snapshot.forEach(doc => {
           const msg = doc.data();
           const div = document.createElement("div");
           div.textContent = `${msg.sender}: ${msg.text}`;
           chatBox.appendChild(div);
-          chatBox.scrollTop = chatBox.scrollHeight;
         });
+        chatBox.scrollTop = chatBox.scrollHeight;
       });
+
   } else {
     document.getElementById("chat-messages").innerHTML = "<i>Vui lòng đăng nhập để chat</i>";
   }
