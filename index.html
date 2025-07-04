@@ -1,0 +1,77 @@
+// src/App.jsx
+
+import React from "react";
+
+// Sidebar Component
+function Sidebar() {
+  return (
+    <aside className="h-screen w-64 bg-[#181c24] flex flex-col border-r border-[#2ec9a6]">
+      <div className="p-6 flex items-center gap-2">
+        <div className="bg-[#2ec9a6] rounded-xl w-10 h-10 flex items-center justify-center font-bold text-xl text-[#181c24]">
+          {/* Logo icon hoặc chữ */}
+          <span>AI</span>
+        </div>
+        <span className="text-[#2ec9a6] text-xl font-bold tracking-widest">DVOOONAYEN</span>
+      </div>
+      <nav className="flex-1 flex flex-col gap-1 px-3">
+        <a href="#" className="flex items-center gap-2 p-3 rounded-2xl text-[#2ec9a6] bg-[#232937] font-semibold hover:bg-[#2ec9a6]/20">
+          <span>🏠</span> Tổng quan
+        </a>
+        <a href="#" className="flex items-center gap-2 p-3 rounded-2xl text-white hover:bg-[#2ec9a6]/20">
+          <span>👤</span> Tài khoản
+        </a>
+        <a href="#" className="flex items-center gap-2 p-3 rounded-2xl text-white hover:bg-[#2ec9a6]/20">
+          <span>📊</span> Báo cáo
+        </a>
+        {/* Thêm mục menu tùy ý */}
+      </nav>
+      <div className="p-6 mt-auto">
+        <button className="w-full py-2 rounded-2xl bg-[#2ec9a6] text-[#181c24] font-bold hover:bg-[#23b591] transition">
+          Đăng xuất
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+// Main Layout
+function MainLayout({ children }) {
+  return (
+    <div className="flex h-screen bg-[#10141b]">
+      <Sidebar />
+      <main className="flex-1 flex flex-col p-6">
+        {/* Header nhỏ / Thanh tìm kiếm */}
+        <div className="mb-6 flex items-center justify-between">
+          <input
+            className="w-96 max-w-full px-4 py-2 rounded-2xl bg-[#232937] text-white placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#2ec9a6]"
+            placeholder="Tìm kiếm..."
+          />
+          {/* Khu vực cho các nút / avatar / thông báo */}
+          <div className="flex gap-2">
+            <button className="w-10 h-10 bg-[#232937] rounded-full flex items-center justify-center text-[#2ec9a6] text-lg font-bold">
+              {/* Icon thông báo, profile */}
+              ☰
+            </button>
+          </div>
+        </div>
+        {/* Nội dung chính */}
+        <div className="flex-1 rounded-2xl bg-[#181c24] shadow-lg p-6 overflow-y-auto">
+          {children}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+// App Component
+export default function App() {
+  return (
+    <MainLayout>
+      {/* Đồ nhi “cấy” nội dung của mình vào đây */}
+      <div className="text-white text-2xl font-bold">
+        Trang Dashboard mẫu
+      </div>
+      {/* Thêm các thành phần tùy thích */}
+    </MainLayout>
+  );
+}
